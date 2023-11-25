@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Archiwum zadań</title>
+</head>
+<body>
+<main layout:fragment="content">
+<div>
+    <div>
+        <h1>Archiwum zadań</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Tytuł</th>
+                <th>Opis</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Kategoria</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task: ${finishedTasksList}">
+                <td th:text="${task.title}">Tytuł</td>
+                <td th:text="${task.description}">Opis</td>
+                <td th:text="${#temporals.format(task.deadline, 'yyyy-MM-dd HH:mm:ss')}">Deadline</td>
+                <td th:text="${task.category.getDisplayName()}">Kategoria</td>
+                <td th:text="${task.status.getDisplayName()}">Status</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div><a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" th:href="@{/}"><h5>STRONA GŁÓWNA</h5></a></div>
+</div>
+</main>
+</body>
+</html>

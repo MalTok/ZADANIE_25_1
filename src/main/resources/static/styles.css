@@ -1,0 +1,89 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+
+img {
+    height: 150px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.form-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+header,
+footer {
+    background-color: #f5f555;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: larger;
+    width: 100%;
+    padding: 20px;
+}
+
+.logo,
+.copy {
+    flex-grow: 1;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.app-name {
+    flex-grow: 3;
+    font-family: "Comic Sans MS", serif;
+    font-size: xxx-large;
+}
+
+textarea {
+    height: 100px;
+}
+
+main {
+    padding: 20px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    font-size: 18px;
+}
+
+a {
+    font-size: 18px;
+    padding: 20px;
+}
+
+.task-row.overdue {
+    color: red;
+}
+
+th, td {
+    padding-right: 7px;
+}
+
+tr {
+    text-align: center;
+}
+
+tr:hover {
+    background-color: #262323;
+}

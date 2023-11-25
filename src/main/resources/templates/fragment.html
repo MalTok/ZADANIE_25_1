@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<body>
+<header th:fragment="header">
+    <div class="logo">
+        <a th:href="@{/}" href="/"><img th:src="@{todo-list.png}" src="/todo-list.png"
+                                        alt="Lista TODO"></a>
+    </div>
+    <div class="app-name">
+        <p>Manager zadań</p>
+    </div>
+</header>
+<footer th:fragment="footer">
+    <div class="copy">
+        <p>All rights reserved &copy;2023</p>
+    </div>
+</footer>
+</body>
+</html>
