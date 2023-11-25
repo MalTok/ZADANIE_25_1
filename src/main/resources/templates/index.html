@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Lista Zadań</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div>
+        <div>
+            <form action="/add" method="post" th:object="${task}">
+                <div class="form-div">
+                    <div>
+                        <label class="form-label">Tytuł
+                            <input type="text" class="form-control" th:field="*{title}">
+                        </label>
+                        <label class="form-label">Opis
+                            <textarea class="form-control" th:field="*{description}"></textarea>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="form-label">Wykonać do
+                            <input type="datetime-local" class="form-control" th:field="*{deadline}">
+                        </label>
+                        <label class="form-label">Kategorie
+                            <select class="form-select" th:field="*{category}">
+                                <option th:each="item : ${T(pl.mt.taskmanager.Category).values()}"
+                                        th:value="${item}"
+                                        th:text="${item.getDisplayName()}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit">Dodaj</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <h1>Zadania do zrobienia</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Tytuł</th>
+                    <th>Opis</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Kategoria</th>
+                    <th>Zakończ</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="task: ${unfinishedTasksList}" class="task-row" th:classappend="${task.deadline.compareTo(T(java.time.LocalDateTime).now()) < 0} ? ' overdue' : ''">
+                    <td th:text="${task.title}">Tytuł</td>
+                    <td th:text="${task.description}">Opis</td>
+                    <td th:text="${#temporals.format(task.deadline, 'yyyy-MM-dd HH:mm:ss')}">Deadline</td>
+                    <td th:text="${task.category.getDisplayName()}">Kategoria</td>
+                    <td th:text="${task.status.getDisplayName()}">Status</td>
+                    <td><a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" th:href="@{|/finish?id=${task.id}|}">ZAKOŃCZ</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div><a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" th:href="@{/archives}"><h2>ARCHIWUM</h2></a></div>
+    </div>
+</main>
+</body>
+</html>
